@@ -1,0 +1,215 @@
+<div class="router-container-home">
+  <div class="row">
+    <div class="background-logo">
+    </div>
+    <div class="logo">
+      <div>
+        <img class="logo" src="/assets/background/logo.png">
+        <h3>Welcome to our new generation investment platform.</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row white">
+    <div class="col-3-offset col-6 home">
+      <div class="blue-color">
+        We would like a brief word on why the InoCoin investment platform is superior to other more conventional means of investing. 
+        <br>
+        <br>
+        Our platform allows investors of all sizes to take part. This is a key advantage that differentiates us from the traditional system, which usually restricts investment opportunities to a small circle of individuals. We are removing these high barriers to entry. Using our platform anyone can invest, regardless of whether it’s $1 or $1,000,000 and our platform can calculate profits as a percentage of investment automatically. INO coin is a utility token that will pave the way towards the future of crowdfunding. After investing in INO you can receive smart services and all kind of products from the projects you support.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3-offset col-6 home">
+      <div class="white-color">
+        InoCoin – Investment Platform places no boundaries on Start Ups. We believe this is the key to a successful business in the new age. New ventures need to be innovative above all else, not forced into the limits of old ideas. As a result of this, the more interesting and fresh a project’s idea is, the more likely it is to secure funding. If you are afraid that you are going to have a hard time finding investors for your project, because your idea is too innovative or optimistic, then you are the ideal candidate for funding through InoCoin. Many of the greatest innovators of our time were thought to be too forward-thinking at first and they struggled to secure the investors and trust necessary to realize their idea.
+        The next step, in terms of platform functionality, is to add the option to purchase Ino using fiat currencies. This way, we won’t be tied exclusively to crypto markets and we will be able to create our own ecosystem, which will help us expand without depending on external factors.       </div>
+      <div class="row trade">
+        <h2>Trade Ino on:</h2>
+        <div class="col-12">
+  				<a class="col-6" href="https://token.store/trade/INO" target="_blank"><img src="assets/tslogo.jpg" alt="token.store"></a>
+  				<a class="col-6" href="https://exrates.me/dashboard/" target="_blank"><img src="assets/xrlogo.png" alt="exrates.me"></a>
+				</div>
+      </div>
+    </div>
+  </div>
+  <div class="row max">
+     <div class="secondary">
+     </div>
+  </div>
+  <div class="row">
+    <div class="col-12 relative max">
+      <img class="background-end"
+           src="/assets/background/background-image.jpg">
+
+     <div class="col-3-offset col-9 absolute progress">
+       <div class="row">
+         <div class="col-2 register"
+              [class.active]="stepper.register.id == currentStepper || stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.register.id)">
+           {{stepper.register.name}}
+         </div>
+         <div class="col-2 register"
+              [class.active]="stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.myProjects.id)">
+           {{stepper.myProjects.name}}
+         </div>
+         <div class="col-2 register"
+              [class.active]="stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.myWallet.id)">
+           {{stepper.myWallet.name}}
+         </div>
+         <div class="col-1 register center"
+              [class.active]="stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.projects.id)">
+           {{stepper.projects.name}}
+         </div>
+         <div class="col-2 register center"
+              [class.active]="stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.complete.id)">
+           {{stepper.complete.name}}
+         </div>
+       </div>
+       <div class="row">
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.register.id == currentStepper || stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.register.id)">
+           <span>.</span>
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myProjects.id == currentStepper || stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.myProjects.id)">
+           <span>.</span>
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.myWallet.id == currentStepper || stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.myWallet.id)">
+           <span>.</span>
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.projects.id == currentStepper || stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.projects.id == currentStepper || stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.projects.id)">
+           <span>.</span>
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.complete.id == currentStepper">
+         </div>
+         <div class="col-1-2 pagination"
+              [class.active]="stepper.complete.id == currentStepper"
+              (click)="setStepper(stepper.complete.id)">
+           <span>.</span>
+         </div>
+       </div>
+     </div>
+
+     <div class="col-12 absolute underline">
+       <div>
+       </div>
+     </div>
+
+      <div class="col-3-offset col-6 absolute top">
+
+        <div class="modal"
+             [ngSwitch]="currentStepper">
+          <div class="top">
+            <h2 *ngSwitchCase="stepper.register.id">
+              {{stepper.register.name}}
+            </h2>
+            <h2 *ngSwitchCase="stepper.myProjects.id">
+              {{stepper.myProjects.name}}
+            </h2>
+            <h2 *ngSwitchCase="stepper.myWallet.id">
+              {{stepper.myWallet.name}}
+            </h2>
+            <h2 *ngSwitchCase="stepper.projects.id">
+              {{stepper.projects.name}}
+            </h2>
+            <h2 *ngSwitchCase="stepper.complete.id">
+              {{stepper.complete.name}}
+            </h2>
+          </div>
+          <div class="row bottom"
+               *ngSwitchCase="stepper.register.id">
+            <div class="col-12">Register Ino coin platform account. To use our platform you must create account from the <a routerLink="/account/registration">registration form</a>.</div>
+            <div class="col-12 center">
+              <button mat-button
+                      (click)="setStepper(stepper.myProjects.id)">
+                Next
+              </button>
+            </div>
+          </div>
+          <div class="row bottom"
+               *ngSwitchCase="stepper.myProjects.id">
+            <div class="col-12">My projects is the page where you can create your own project. Please write the best possible description to present your idea to our community.</div>
+            <div class="col-12 center">
+              <button mat-button
+                      (click)="setStepper(stepper.myWallet.id)">
+                Next
+              </button>
+            </div>
+          </div>
+          <div class="row bottom"
+               *ngSwitchCase="stepper.myWallet.id">
+            <div class="col-12">On my wallets you can create new wallet or import existing. We support any ethereum based wallets. Our wallets are ERC20 compatible. Keep in mind that you should remember or write down your password because it cannot be restored.</div>
+            <div class="col-12 center">
+              <button mat-button
+                      (click)="setStepper(stepper.projects.id)">
+                Next
+              </button>
+            </div>
+          </div>
+          <div class="row bottom"
+               *ngSwitchCase="stepper.projects.id">
+            <div class="col-12">The main page of the platform is the projects section. Here you can invest in ideas that you like.</div>
+            <div class="col-12 center">
+              <button mat-button
+                      (click)="setStepper(stepper.complete.id)">
+                Next
+              </button>
+            </div>
+          </div>
+          <div class="row bottom"
+               *ngSwitchCase="stepper.complete.id">
+            <div class="col-12">For us the community of Ino investors and entrepreneurs is of utmost importance. The platform will be developed and new features will be added, based on what the wants and needs of the community. All decisions will be taken as a group. We are firm believers in decentralization in any industry. Therefore, blockchain technology has provided the perfect home to our concept.</div>
+          </div>
+        </div>
+        <div class="white-color">
+          The next step, in terms of platform functionality, is adding the option to purchase Ino using fiat currencies. In this way, we won’t be tied to crypto markets and we will be able to create our own ecosystem, which should help us expand without depending on external factors.
+          <br>
+          <br>
+          We plan on carrying out a round of capital raising, choosing a project and funding once every quarter.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

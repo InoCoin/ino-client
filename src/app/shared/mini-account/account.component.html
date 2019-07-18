@@ -1,0 +1,44 @@
+<div class="relative">
+  <button mat-icon-button
+          color="warn"
+          class="close"
+          (click)="onDelete()">
+    <mat-icon aria-label="icon">close</mat-icon>
+  </button>
+  <div>
+    <div class="name">{{account.name}}</div>
+    <div class="col-12">
+      <div class="col-8 amount">
+        {{balance | number}} INO
+      </div>
+      <div class="col-4 text-right date">{{account.createdAt | date:'short'}}</div>
+    </div>
+    <div class="col-12">
+      <div class="col-8 amount">
+        {{ethBalance}} ETH
+      </div>
+    </div>
+    <div class="address"
+         #address
+         (click)="copy()">
+         {{account.address}}
+    </div>
+    <div class="row">
+      <button class="col-4"
+              mat-button
+              (click)="showKeyStore()">
+        Key store
+      </button>
+      <button class="col-4"
+              mat-button
+              (click)="buy()">
+        Buy
+      </button>
+      <button class="col-4"
+              mat-button
+              (click)="send()">
+        Send
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<div class="router-container row">
+  <form [formGroup]="signupForm">
+    <div class="col-4 col-2-offset">
+      <section>
+        <header>
+          <h3>
+            <mat-icon>
+              person
+            </mat-icon>
+              Create an account
+            <small>( All fields with sign  „*“  are required ! )</small>
+          </h3>
+        </header>
+        <div class="row">
+          <div class="col-4 profile-image">
+            <div class="text-center">
+              <img [src]="profileImage == null ? '/assets/images/profile.png' : profileImage.buffer"
+                   alt="64x64"
+                   width="130">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <h3>
+              <span>
+                {{ signupForm.value.firstname?.length ? signupForm.value.firstname : 'Firstname' }}
+              </span>
+              <span>
+                {{ signupForm.value.lastname?.length ? signupForm.value.lastname : 'Lastname' }}
+              </span>
+            </h3>
+            <address>
+              <p>With this profile you will have access to all functionalities !</p>
+              <abbr>Email:</abbr>
+              <a href="javascript::void(0);">
+                {{ signupForm.value.email?.length ? signupForm.value.email : 'yourmail@inocoin.eu' }}
+              </a>
+            </address>
+          </div>
+        </div>
+        <fieldset>
+          <legend class="section">Personal info</legend>
+          <div class="row form">
+            <div class="col-1-offset col-3">
+              <label>
+                Firstname
+                <span class="required">*</span>
+                <ul *ngIf="( serverError || signupForm.controls.firstname.invalid ) && isSubmitted">
+                  <li *ngFor="let error of errors?.firstname">{{error}}</li>
+                </ul>
+              </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control"
+                     type="text"
+                     placeholder="Firstname..."
+                     formControlName="firstname"
+                     [class.error]="isValid('firstname')">
+            </div>
+          </div>
+          <div class="row form">
+            <div class="col-1-offset col-3">
+              <label>
+                Lastname
+                <span class="required">*</span>
+                <ul *ngIf="( serverError || signupForm.controls.lastname.invalid ) && isSubmitted">
+                  <li *ngFor="let error of errors?.lastname">{{error}}</li>
+                </ul>
+              </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control"
+                     type="text"
+                     placeholder="Lastname..."
+                     formControlName="lastname"
+                     [class.error]="isValid('lastname')">
+            </div>
+          </div>
+        </fieldset>
+      </section>
+    </div>
+    <div class="col-4">
+      <section>
+        <fieldset>
+          <legend class="section">Contacts</legend>
+          <div class="row form">
+            <div class="col-1-offset col-3">
+              <label>
+                Email
+                <span class="required">*</span>
+                <ul *ngIf="( serverError || signupForm.controls.email.invalid ) && isSubmitted">
+                  <li *ngFor="let error of errors?.email">{{error}}</li>
+                </ul>
+              </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control"
+                     type="email"
+                     placeholder="yourmail@inocoin.eu"
+                     formControlName="email"
+                     [class.error]="isValid('email')">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend class="section">Security</legend>
+          <div class="row form">
+            <div class="col-1-offset col-3">
+              <label>
+                Password
+                <span class="required">*</span>
+                <ul *ngIf="( serverError || signupForm.controls.password.invalid ) && isSubmitted">
+                  <li *ngFor="let error of errors?.password">{{error}}</li>
+                </ul>
+              </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control"
+                     type="password"
+                     placeholder="Password..."
+                     formControlName="password"
+                     [class.error]="isValid('password')">
+            </div>
+          </div>
+          <div class="row form">
+            <div class="col-1-offset col-3">
+              <label>
+                Confirm
+                <span class="required">*</span>
+                <ul *ngIf="( serverError || signupForm.controls.passwordConfirm.invalid ) && isSubmitted">
+                  <li *ngFor="let error of errors?.passwordConfirm">{{error}}</li>
+                </ul>
+                <ul *ngIf="signupForm.invalid && signupForm.errors?.passwordMismatch && isSubmitted">
+                  <li >Password mismatch !</li>
+                </ul>
+              </label>
+            </div>
+            <div class="col-7">
+              <input class="form-control"
+                     type="password"
+                     placeholder="Confirm password..."
+                     formControlName="passwordConfirm"
+                     [class.error]="isValid('passwordConfirm')">
+            </div>
+          </div>
+        </fieldset>
+        <section class="check-box">
+          <mat-checkbox formControlName="policy" labelPosition="before">I agree with the <a target="_blank" href="/assets/rules.pdf">terms and conditions</a></mat-checkbox>
+        </section>
+        <div class="row">
+          <div class="col-11 text-right">
+            <button mat-button
+                    (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+          <div class="success" *ngIf="success">
+              Please, check your email for activation link !
+            </div>
+        </div>
+      </section>
+    </div>
+  </form>
+</div>

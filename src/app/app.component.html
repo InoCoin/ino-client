@@ -1,0 +1,141 @@
+<mat-toolbar color="primary">
+  <span class="logo">
+    <a routerLink="/">
+      <img src="/assets/logo.png"/>
+    </a>
+  </span>
+  <span class="spacer"></span>
+  <span class="divider"></span>
+  <div>
+    <span class="menu">
+      <a routerLink="/projects"
+         routerLinkActive="active">
+         Ino Projects
+      </a>
+    </span>
+  </div>
+  <span class="divider"></span>
+  <span class="menu"
+        *ngIf="TransferState.get('user') == null">
+    <a routerLink="/account/login"
+       routerLinkActive="active">
+       Login
+    </a>
+  </span>
+  <span class="menu"
+        *ngIf="TransferState.get('user') && TransferState.get('user').role == userRoles.admin"
+        [matMenuTriggerFor]="configMenu">
+        Admin panel
+  </span>
+  <mat-menu #configMenu="matMenu">
+    <button mat-menu-item
+            (click)="goToConfiguration()">
+      Ino configuration
+    </button>
+    <button mat-menu-item
+          (click)="goToUpdates()">
+      Ino Updates
+    </button>
+    <button mat-menu-item
+            (click)="goToPlaces()">
+      Ino Places
+    </button>
+    <button mat-menu-item
+            (click)="goToNewAccounts()">
+      New Accounts
+    </button>
+    <button mat-menu-item
+            (click)="goToPayments()">
+      Buy requests
+    </button>
+  </mat-menu>
+  <span *ngIf="TransferState.get('user') && TransferState.get('user').role == userRoles.admin"
+        class="divider">
+  </span>
+  <span class="menu"
+        *ngIf="TransferState.get('user')"
+        [matMenuTriggerFor]="menu">
+        My profile
+  </span>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+            (click)="goToProjects()">
+      My projects
+    </button>
+    <button mat-menu-item
+            (click)="goToWallet()">
+      My wallet
+    </button>
+  </mat-menu>
+  <span class="divider"></span>
+  <span class="menu"
+        *ngIf="TransferState.get('user') == null">
+    <a routerLink="/account/registration"
+       routerLinkActive="active">
+       Registration
+    </a>
+  </span>
+  <span class="menu"
+        *ngIf="TransferState.get('user')"
+        (click)="onLogOut()">
+    Logout
+  </span>
+  <span class="divider"></span>
+</mat-toolbar>
+<div class="router-outlet">
+  <router-outlet></router-outlet>
+</div>
+<footer>
+  <div class="row">
+    <div class="col-2-offset col-8 footer">
+      <h4 class="col-6">&#169; Inocoin.eu</h4>
+      <div class="col-6 text-right">
+        <a routerLink="/faq"
+           target="_blank"
+           class="link">
+          <span>FAQ</span>
+        </a>
+        <span>|</span>
+        <a href="/assets/inocoin%20terms%20of%20use.pdf"
+           target="_blank"
+           class="link">
+          <span>Terms</span>
+          <span>of</span>
+          <span>use</span>
+        </a>
+        <span>|</span>
+        <a href="/assets/inocoin%20privacy%20policy.pdf"
+           target="_blank"
+           class="link">
+          <span>Privacy</span>
+          <span>&</span>
+          <span>Policy</span>
+        </a>
+        <a href="https://www.facebook.com/InoCoin-352618868548773/"
+           target="_blank"
+           class="link">
+          <span><img src="/assets/images/social/facebook-small.svg"/></span>
+        </a>
+        <a href="https://twitter.com/InoCoin2018"
+           target="_blank"
+           class="link">
+          <span><img src="/assets/images/social/twitter-small.svg"/></span>
+        </a>
+        <a href="https://github.com/InoCoin"
+           target="_blank"
+           class="link">
+          <span><img src="/assets/images/social/github.svg"/></span>
+        </a>
+        <a href="https://t.me/joinchat/IVXqBA86cfnqps3zHxB7FA"
+           target="_blank"
+           class="link">
+          <span><img src="/assets/images/social/telegram.svg"/></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="no-internet"
+     *ngIf="!online">
+  <h1>No Internet connection !</h1>
+</div>

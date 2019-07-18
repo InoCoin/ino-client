@@ -1,0 +1,22 @@
+@import '../../../../stylesheets/variables';
+
+div.btn-project {
+  height: 125px;
+  max-width: 150px;
+  display: table;
+  border: 1px white;
+  border-style: dashed;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+
+  div.text {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+button {
+  color: white;
+}

@@ -1,0 +1,30 @@
+<div class="router-container row">
+  <div class="col-1-offset col-10">
+    <div class="col-2"
+         (click)="onAddProject()">
+      <div class="btn-project">
+        <div class="text">
+          <span>
+            +
+          </span>
+          Add project
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <mini-project-component class="col-4"
+                             *ngFor="let project of projects;let i = index"
+                             [project]="project"
+                             [index]="i"
+                             (delete)="onDelete(i)">
+      </mini-project-component>
+    </div>
+    <div class="col-12 text-right">
+      <button mat-button
+              (click)="onLoadProject()"
+              *ngIf="!loaded">
+        Show more
+      </button>
+    </div>
+  </div>
+</div>

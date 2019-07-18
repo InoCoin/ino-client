@@ -1,0 +1,16 @@
+<div class="router-container" *ngIf="error">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Alert</mat-card-title>
+            <mat-card-subtitle>Some problems with registration</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{error}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-button routerLink="/">Back</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,28 @@
+<div class="router-container">
+  <div class="row">
+    <div class="col-1-offset col-10">
+        <div class="col-2">
+          <div class="btn-place"
+              (click)="onAddPlace()">
+            <div class="text">
+              <span>
+                +
+              </span>
+              Add place
+            </div>
+          </div>
+        </div>
+      <div class="col-10">
+        <place-component *ngFor="let place of places" [place]="place" class="col-12">
+        </place-component>
+      </div>
+      <div class="col-8 text-right">
+          <button mat-button
+                  (click)="onLoadPlaces()"
+                  *ngIf="!loaded">
+            Show more
+          </button>
+        </div>
+    </div>
+  </div>
+</div>

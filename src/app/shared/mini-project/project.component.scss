@@ -1,0 +1,50 @@
+div.relative {
+    padding: 0 30px 45px 0;
+    mat-card {
+        padding: 0;
+        mat-card-content {
+            height: 320px;
+            overflow: hidden;
+            span.name {
+                font-size: 16px;
+                margin-left: 5px;
+                margin-top: 5px;
+            }
+            div.image {
+                height: 250px;
+                overflow: hidden;
+                border-bottom: solid 5px #3093e4;
+                margin-bottom: 5px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+    div.address {
+        color: #2582ca;
+        font-size: 12px;
+        margin-top: 3px;
+        margin-left: 8px;
+    }
+    div.date {
+        color: #49535d;
+        font-size: 12px;
+        font-family: serif;
+        span {
+            cursor: pointer;
+        }
+    }
+    mat-card-actions {
+        padding: 0 16px;
+        a {
+            color: black;
+            margin-right: 10px;
+            mat-icon {
+              position: relative;
+              top: 5px;
+            }
+        }
+    }
+}

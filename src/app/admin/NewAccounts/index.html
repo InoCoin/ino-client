@@ -1,0 +1,15 @@
+<div class="router-container">
+    <div class="row">
+      <div class="col-4-offset col-4">
+        <new-account-component *ngFor="let account of accounts" [account]="account"></new-account-component>
+      </div>
+      <div class="col-8 text-right">
+        <button mat-button
+                (click)="onLoadAccounts()"
+                *ngIf="!loaded">
+          Show more
+        </button>
+      </div>
+    </div>
+  </div>
+  

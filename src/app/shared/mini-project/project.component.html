@@ -1,0 +1,36 @@
+<div class="relative">
+  <mat-card>
+    <mat-card-content>
+      <div class="image">
+        <img [src]="api_url + '/min_uploads/images/' + project.image"/>
+      </div>
+      <div class="col-12">
+        <div class="col-9">
+          <span class="name">{{project.title}}</span>
+        </div>
+        <div class="date col-3">
+          {{project.createdAt | date:'short'}}
+        </div>
+      </div>
+      <div class="col-12 address"
+           #address
+           (click)="copy()">{{project.address}}</div>
+    </mat-card-content>
+    <mat-card-actions class="text-right">
+      <button mat-button
+              (click)="onDelete()">
+              Delete
+      </button>
+      <button mat-button
+              [disabled]="!loaded"
+              (click)="onEdit()">
+              Edit
+      </button>
+      <a [routerLink]="'/project/'+project._id">
+        <mat-icon>
+          link
+        </mat-icon>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

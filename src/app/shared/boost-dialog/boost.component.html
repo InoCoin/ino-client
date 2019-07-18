@@ -1,0 +1,57 @@
+<mat-icon class="close"
+         (click)="MatDialogRef.close()">
+         close
+</mat-icon>
+<form [formGroup]="boostForm">
+  <div class="row">
+    <div class="col-12 header">
+      <h3>Boost Ino project</h3>
+    </div>
+    <mat-form-field  class="col-2-offset col-8"
+                     color="accent">
+      <mat-select formControlName="selected">
+        <mat-option *ngFor="let account of accounts; let i = index" [value]="i">{{account.name}} {{account.balance | number}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="col-2-offset col-8">
+      <mat-form-field color="accent">
+        <input matInput
+               placeholder="Amount 0...."
+               formControlName="amount"
+               autocomplete="off"/>
+      </mat-form-field>
+    </div>
+    <div class="col-2-offset col-8">
+      <mat-form-field color="accent">
+         <input matInput
+                placeholder="To 0x00000...."
+                formControlName="address"/>
+       </mat-form-field>
+    </div>
+    <div class="col-2-offset col-8">
+      <mat-form-field color="accent">
+         <input matInput
+                placeholder="Password..."
+                formControlName="password"
+                type="password"/>
+       </mat-form-field>
+    </div>
+    <div class="error col-2-offset col-8">
+      {{error}}
+    </div>
+    <div class="col-12">
+      <div *ngFor="let key of getKeys()">
+        <div *ngFor="let err of errors[key]"
+             class="error">
+          {{err}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 footer text-right">
+      <button mat-raised-button
+              (click)="onSubmit()">
+        Boost
+      </button>
+    </div>
+  </div>
+</form>

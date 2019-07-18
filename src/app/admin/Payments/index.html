@@ -1,0 +1,14 @@
+<div class="router-container">
+  <div class="row">
+    <div class="col-4-offset col-4">
+      <payment-component *ngFor="let payment of payments" [payment]="payment"></payment-component>
+    </div>
+    <div class="col-8 text-right">
+      <button mat-button
+              (click)="onLoadPayments()"
+              *ngIf="!loaded">
+        Show more
+      </button>
+    </div>
+  </div>
+</div>

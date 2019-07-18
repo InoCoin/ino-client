@@ -1,0 +1,59 @@
+<div class="router-container row">
+  <div class="col-12">
+    <section>
+      <header class="text-center">
+        <h4>Forgotten password</h4>
+      </header>
+      <div class="body">
+        <form [formGroup]="accountForm">
+          <fieldset>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <div class="input-group">
+                <span [class.error]="isValid('email')">
+                  <mat-icon>
+                    person
+                  </mat-icon>
+                </span>
+                <input type="email"
+                       class="form-control"
+                       placeholder="Your email"
+                       formControlName="email"
+                       [class.error]="isValid('email')">
+              </div>
+              <ul *ngIf="( serverError || accountForm.controls.email.invalid ) && isSubmitted">
+                <li *ngFor="let error of errors?.email">{{error}}</li>
+              </ul>
+              <ul *ngIf="check"
+                   class="check">
+                <li>Check your email, please</li>
+              </ul>
+            </div>
+          </fieldset>
+          <div class="form-actions">
+            <button mat-raised-button color="primary"
+                    (click)="onSubmit()">
+              <mat-icon>
+                play_circle_filled
+              </mat-icon>
+              Reset
+            </button>
+            <div class="row">
+              <a class="col-6" routerLink="/account/login">Login</a>
+              <a class="col-6" routerLink="/account/registration">Registration</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer>
+        <div class="facebook-login"
+             (click)="facebookAuth()">
+          <img src="/assets/images/social/facebook.svg"/>
+          <a href="javascript:;">
+            <span>Login with Facebook</span>
+          </a>
+        </div>
+      </footer>
+    </section>
+  </div>
+</div>

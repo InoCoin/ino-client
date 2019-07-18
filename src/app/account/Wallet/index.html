@@ -1,0 +1,162 @@
+<div class="router-container row">
+  <div class="col-1-offset col-10">
+
+    <div class="col-2-5">
+
+      <div class="row info">
+        <div class="col-12">
+          <h3 class="title">Info</h3>
+        </div>
+        <div class="col-6 usd">
+          <div>
+            <div class="price">Ino coin price:</div>
+            <div class="value">{{price | number:'1.0-6'}} <span class="currency">USD</span></div>
+          </div>
+          <div>
+            <div class="price">INO balance in USD:</div>
+            <div class="value">{{balance * price | number:'1.0-6'}} <span class="currency">USD</span></div>
+          </div>
+        </div>
+        <div class="col-6 balance">
+          <div>
+            <div class="price">My INO balance:</div>
+            <div class="value">{{balance | number}} <span class="currency">INO</span></div>
+          </div>
+          <div>
+            <div class="price">My ETH balance:</div>
+            <div class="value">{{ethBalance | number:'1.0-6'}}  <span class="currency">ETH</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row wallet info">
+        <div class="col-12">
+          <div class="row border">
+            <div class="col-6 accounts">
+              <div>
+                <button mat-mini-fab
+                        class="mini"
+                        (click)="onAddAccount()">
+                 +
+               </button>
+               <div class="existing">
+                  Add an existing account
+               </div>
+              </div>
+            </div>
+            <div class="col-6 accounts">
+              <div>
+                <button mat-mini-fab
+                        class="mini"
+                        (click)="onAddNewAccount()">
+                 +
+               </button>
+               <div class="existing">
+                  Add new account
+               </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12"
+               *ngFor="let account of accounts; let i = index">
+            <mini-account-component [account]="account"
+                                    [index]="i"
+                                    (delete)="onDelete(i)">
+            </mini-account-component>
+          </div>
+          <div class="col-12 center">
+            <button mat-button
+                    class="show-more"
+                    (click)="onLoadAccounts()"
+                    *ngIf="!loaded">
+              Show more
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-9-1">
+      <div class="row transactions">
+        <div class="col-12">
+          <h3 class="title">Incoming transactions</h3>
+        </div>
+        <div class="col-12">
+          <div class="no-transactions"
+               *ngIf="intransactions.length == 0">
+            You dont have any incoming transactions.
+          </div>
+          <div class="row">
+            <div class="col-12"
+                 *ngFor="let transaction of intransactions">
+              <transaction-component [transaction]="transaction">
+              </transaction-component>
+            </div>
+            <div class="col-12 center">
+              <button mat-button
+                      class="show-more"
+                      (click)="onLoadInTrasactions()"
+                      *ngIf="!intloaded">
+                Show more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row transactions">
+        <div class="col-12">
+          <h3 class="title">Outcoming transactions</h3>
+        </div>
+        <div class="col-12">
+          <div class="no-transactions"
+               *ngIf="outtransactions.length == 0">
+            You dont have any outcoming transactions.
+          </div>
+          <div class="row">
+            <div class="col-12"
+                 *ngFor="let transaction of outtransactions">
+              <transaction-component [transaction]="transaction">
+              </transaction-component>
+            </div>
+            <div class="col-12 center">
+              <button mat-button
+                      class="show-more"
+                      (click)="onLoadOutTrasactions()"
+                      *ngIf="!outloaded">
+                Show more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row boosts">
+        <div class="col-12">
+          <h3 class="title">Boosted projects</h3>
+        </div>
+        <div class="col-12">
+          <div class="no-boosts"
+               *ngIf="boosts.length == 0">
+            To see this section, first boost a project from <a routerLink="/projects">here</a>.
+          </div>
+          <div class="row">
+            <div class="col-12"
+                 *ngFor="let boost of boosts">
+              <boost-component [boost]="boost">
+              </boost-component>
+            </div>
+            <div class="col-12 center">
+              <button mat-button
+                      class="show-more"
+                      (click)="onLoadBoosts()"
+                      *ngIf="!bloaded">
+                Show more
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

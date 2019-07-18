@@ -1,0 +1,29 @@
+<div class="router-container">
+  <div class="configuration">
+    <h3>Ino coin configuration</h3>
+    <mat-form-field color="accent">
+      <input matInput
+             placeholder="Ino coin price in USD"
+             [(ngModel)]="amount">
+      <mat-hint>Example 1.33 USD</mat-hint>
+    </mat-form-field>
+    <div class="text-right">
+      <button mat-raised-button
+              (click)="onSubmit()">
+        Update
+      </button>
+    </div>
+  </div>
+
+  <div class="configuration">
+    <h3>Ino users access</h3>
+    <user-component *ngFor="let user of users" [user]="user"></user-component>
+    <div class="text-right">
+      <button mat-button
+              (click)="onLoadUsers()"
+              *ngIf="!loaded">
+        Show more
+      </button>
+    </div>
+  </div>
+</div>
