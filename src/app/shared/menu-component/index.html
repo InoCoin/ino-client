@@ -1,0 +1,14 @@
+<div class="category">
+    <button mat-flat-button (click)="toggle()" type="button">
+        <div class="flex">
+            <span>{{data[value].name}}</span>
+            <lazy-image-component src="/assets/images/arrow-down.png" width="12px" height="12px" verticalAlign="top">
+            </lazy-image-component>
+        </div>
+    </button>
+    <div class="cateogries" [class.active]="show">
+        <a (click)="setValue(item.value)" *ngFor="let item of data | keyvalue : orderKeyValue; trackBy: trackByFn" [class.active]="value == item.value.key">
+            {{item.value.name}}
+        </a>
+    </div>
+</div>

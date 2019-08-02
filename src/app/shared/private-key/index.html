@@ -1,0 +1,26 @@
+<form [formGroup]="privateKeyForm">
+  <div class="header">
+    <h3>Export private key</h3>
+  </div>
+  <mat-form-field color="primary">
+    <input matInput placeholder="Account password..." autocomplete="off" formControlName="password" type="password">
+  </mat-form-field>
+  <div *ngFor="let key of getKeys()">
+    <div *ngFor="let err of errors[key]" class="error">
+      {{err}}
+    </div>
+  </div>
+  <ng-container *ngIf="privateKey">
+    <div>
+      Private key:
+    </div>
+    <div class="key" copy>
+      {{this.privateKey}}
+    </div>
+  </ng-container>
+  <div class="actions flex">
+    <button mat-flat-button color="primary" (click)="exportPrivateKey()">
+      Export
+    </button>
+  </div>
+</form>

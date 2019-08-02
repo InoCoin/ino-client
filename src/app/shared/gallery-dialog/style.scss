@@ -1,0 +1,53 @@
+.responsive-width {
+  max-width: 95vh;
+  height: auto;
+}
+
+.responsive-height {
+  width: auto;
+  max-height: 95vh;
+}
+
+div.photo:hover div.arrow {
+  mat-icon {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+div.arrow {
+  position: absolute;
+  top: 45%;
+  cursor: pointer;
+
+  button {
+    background-color: rgba(255, 255, 255, 0);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    opacity: 0.6;
+    transition: ease 400ms;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover{
+      opacity: 1;
+    }
+
+  }
+}
+
+div.left {
+  left: 20px;
+  transform: rotate(180deg);
+}
+
+div.right {
+  right: 20px;
+
+}
+
+img{
+  vertical-align: top;
+}

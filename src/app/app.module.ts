@@ -1,93 +1,57 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, UrlSerializer } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { OverlayModule } from "@angular/cdk/overlay";
+import { MatToolbarModule, MatSidenavModule, MatRippleModule, MatDialogModule } from '@angular/material';
 
-import {
-  MatToolbarModule,
-  MatIconModule,
-  MatMenuModule,
-  MatButtonModule,
-  MatSidenavModule
-} from '@angular/material'
-
+import { TransferHttpCacheModule } from './modules/transfer_http';
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './app.routes';
 import { environment } from '../environments/environment';
-
-import {
-  ApiProvider,
-  UserProvider,
-  ProjectProvider,
-  AccountProvider,
-  TransactionProvider,
-  VoteProvider,
-  PaymentProvider,
-  ConfigurationProvider,
-  BoostProvider,
-  SocketProvider,
-  PlaceProvider,
-  FileProvider,
-  AccountPlaceProvider,
-
-  TransferState,
-  Web3Provider,
-  LoaderProvider,
-  AuthGuardProvider,
-  NotAuthGuardProvider,
-  AdminGuardProvider
-} from './providers';
+import { LazyImageModule } from './shared/lazy-image-component';
+import { LoginDialogModule, LoginDialog } from './shared/login-dialog';
+import { ChangePasswordDialogModule, ChangePasswordDialog } from './shared/change-password';
 
 @NgModule({
   declarations: [
     MODULE_COMPONENTS
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ino-app' }),
-    RouterModule.forRoot(MODULE_ROUTES, { initialNavigation: 'enabled' }),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    BrowserModule.withServerTransition({ appId: 'project' }),
+    TransferHttpCacheModule,
+    RouterModule.forRoot(MODULE_ROUTES, {
+      initialNavigation: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      malformedUriErrorHandler: malFormedURI,
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
-
-    //Material
     MatToolbarModule,
     MatSidenavModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    OverlayModule
+    MatRippleModule,
+    MatDialogModule,
+    LazyImageModule,
+    LoginDialogModule,
+    ChangePasswordDialogModule
   ],
-  providers: [
-    ApiProvider,
-    ProjectProvider,
-    UserProvider,
-    AccountProvider,
-    TransactionProvider,
-    VoteProvider,
-    PaymentProvider,
-    ConfigurationProvider,
-    BoostProvider,
-    SocketProvider,
-    PlaceProvider,
-    FileProvider,
-    AccountPlaceProvider,
-
-    TransferState,
-    Web3Provider,
-    LoaderProvider,
-    AuthGuardProvider,
-    NotAuthGuardProvider,
-    AdminGuardProvider
+  entryComponents: [
+    LoginDialog,
+    ChangePasswordDialog
   ],
   exports: [
     RouterModule,
-    //Material
     MatToolbarModule,
     MatSidenavModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule
+    MatRippleModule,
+    MatDialogModule,
+    LazyImageModule,
+    LoginDialogModule,
+    ChangePasswordDialogModule
   ]
 })
 
 export class AppModule { }
+
+export function malFormedURI(error: URIError, urlSerializer: UrlSerializer, url: string) {
+  return urlSerializer.parse('/')
+};

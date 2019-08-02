@@ -1,0 +1,23 @@
+<div class="register">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <h1>
+            Welcome to InoCoin Platform
+        </h1>
+        <h2>
+            To create your new account we will need the following information
+        </h2>
+
+        <input-component [formGroup]="signupForm" formName="firstname" autocomplete="off" type="text" placeholder="First Name *" image="email.png" [errors]="errors.firstname || [] "></input-component>
+        <input-component [formGroup]="signupForm" formName="lastname" autocomplete="off" type="text" placeholder="Last Name *" image="email.png" [errors]="errors.lastname || [] "></input-component>
+        <input-component [formGroup]="signupForm" formName="email" autocomplete="off" type="email" placeholder="E-mail Address *" image="email.png" [errors]="errors.email || [] "></input-component>
+        <input-component [formGroup]="signupForm" formName="password" autocomplete="off" type="password" placeholder="Password *" image="password.png" [errors]="errors.password || [] "></input-component>
+        <input-component [formGroup]="signupForm" formName="passwordConfirm" autocomplete="off" type="password" placeholder="Confirm Password *" image="password.png" [errors]="errors.passwordConfirm || [] "></input-component>
+
+        <mat-checkbox color="primary" labelPosition="before" formControlName="policy">I agree with Terms & Conditions</mat-checkbox>
+        <div class="submit flex">
+            <button mat-flat-button color="primary" [disabled]="isSubmitted">
+                REGISTER
+            </button>
+        </div>
+    </form>
+</div>

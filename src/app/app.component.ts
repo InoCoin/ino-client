@@ -1,154 +1,92 @@
-import { Component, Inject, PLATFORM_ID, OnInit, ViewEncapsulation, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { UserProvider, TransferState, LoaderProvider } from './providers'
-import { isPlatformBrowser } from '@angular/common';
+import { Component, ChangeDetectionStrategy, HostListener, OnDestroy, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
-import { UserRoles } from '../globals/config';
-import {
-  Router,
-  Event as RouterEvent,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError
-} from '@angular/router';
-
-declare let ga: any;
+import { LoginDialog } from './shared/login-dialog';
+import { UpdateProvider, UserProvider, MapProvider } from './providers';
+import { ChangePasswordDialog } from './shared/change-password';
+import { UserRoles } from 'src/globals/config';
 
 @Component({
-  selector: 'ino-app',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.scss'
-  ],
+  selector: 'app-root',
+  styleUrls: ['./app.component.scss'],
   templateUrl: 'app.component.html',
-  host: {
-    '(window:online)': 'onlineEvent($event)',
-    '(window:offline)': 'offlineEvent($event)'
-  },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy {
 
-  subscribe;
+  user;
+  userSubscriber;
+  active = false;
+  show = false;
+  roles = UserRoles;
 
-  routeIndex: any;
-  userRoles = UserRoles;
-  loaded = false;
-  online = true;
+  @ViewChild('menu', { static: false }) menu: ElementRef;
 
   constructor(
-    private Router: Router,
-    private ChangeDetectorRef: ChangeDetectorRef,
+    private UpdateProvider: UpdateProvider,
     private UserProvider: UserProvider,
-    private LoaderProvider: LoaderProvider,
-    public TransferState: TransferState,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private MapProvider: MapProvider,
+    private Router: Router,
+    private MatDialog: MatDialog,
+    private ChangeDetectorRef: ChangeDetectorRef
   ) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.online = navigator.onLine
+    this.user = this.MapProvider.get(this.MapProvider.USER);
+    this.userSubscriber = this.MapProvider.setSubsription(this.MapProvider.USER).subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscriber) {
+      this.userSubscriber.unsubscribe();
     }
   }
 
-  ngOnInit() {
-
-    if (this.online == false) {
-      return;
+  login() {
+    if (this.user) {
+      return this.toggle();
     }
-
-    this.load();
-
+    return this.MatDialog.open(LoginDialog);
   }
 
-  onlineEvent(event) {
-    this.online = true;
-    this.load();
+  changePassword(){
+    if (this.user) {
+      this.MatDialog.open(ChangePasswordDialog);
+      return this.toggle();
+    }
   }
 
-  offlineEvent($event) {
-    this.online = false;
-    this.Router.navigate(['/']);
+  toggle() {
+    this.show = !this.show;
     this.ChangeDetectorRef.markForCheck();
   }
 
-  load() {
-    this.LoaderProvider.show();
-
-    if (this.subscribe) {
-      this.subscribe.unsubscribe();
-    }
-
-    this.subscribe = this.Router.events.subscribe((event: RouterEvent) => {
-      if (this.loaded) {
-        this.navigationInterceptor(event);
-      }
-    });
-
-    this.UserProvider.getAuth()
-      .subscribe((res: any) => {
-        this.loaded = true;
-        this.ChangeDetectorRef.markForCheck();
-        this.LoaderProvider.hide();
-      });
-  }
-
-  navigationInterceptor(event: RouterEvent): void {
-
-    if (event instanceof NavigationStart) {
-      this.LoaderProvider.show();
-    } else if (event instanceof NavigationEnd) {
-
-      if (isPlatformBrowser(this.platformId) && window['ga'] && ga.loaded) {
-        ga('set', 'page', event.urlAfterRedirects);
-        ga('send', 'pageview');
-      }
-
-      this.LoaderProvider.hide();
-    } else if (event instanceof NavigationCancel) {
-      this.LoaderProvider.hide();
-    } else if (event instanceof NavigationError) {
-      this.LoaderProvider.hide();
-    }
-
-  }
-
-  onLogOut() {
-    this.LoaderProvider.show();
+  logOut() {
     this.UserProvider.logOut().subscribe((res) => {
       if (res.result) {
+        this.user = null;
+        this.toggle();
         this.Router.navigate(['/']);
       }
+    });
+  }
+
+  @HostListener("document:click", ['$event']) onClick(event) {
+    if (!this.menu.nativeElement.contains(event.target)) {
+      this.show = false;
       this.ChangeDetectorRef.markForCheck();
-      this.LoaderProvider.hide();
-    })
+    }
   }
 
-  goToProjects() {
-    this.Router.navigate(['/account', 'projects']);
+  @HostListener("window:scroll", ['$event']) onWindowScroll(event) {
+    const height = window.pageYOffset;
+    if (height > 100) {
+      this.active = true;
+    } else {
+      this.active = false;
+    }
   }
 
-  goToWallet() {
-    this.Router.navigate(['/account', 'wallet']);
-  }
-
-
-  goToConfiguration() {
-    this.Router.navigate(['/admin', 'configuration']);
-  }
-
-  goToPayments() {
-    this.Router.navigate(['/admin', 'payments']);
-  }
-
-  goToUpdates() {
-    this.Router.navigate(['/admin', 'updates']);
-  }
-
-  goToPlaces(){
-    this.Router.navigate(['/admin', 'places']);
-  }
-
-  goToNewAccounts(){
-    this.Router.navigate(['/admin', 'new-accounts']);
-  }
 }

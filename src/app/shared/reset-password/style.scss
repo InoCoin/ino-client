@@ -1,0 +1,67 @@
+@import '../../../../stylesheets/variables';
+
+div.register {
+    width: 350px;
+}
+
+h1 {
+    color: $blue;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+h2 {
+    color: $blue;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 100;
+}
+
+input-component {
+    width: 90%;
+    display: block;
+    margin: 5px auto;
+    min-width: 315px;
+}
+
+div.flex {
+    justify-content: space-around;
+
+    a,
+    span {
+        color: $blue;
+    }
+
+    a {
+        cursor: pointer;
+    }
+}
+
+mat-checkbox {
+    text-align: center;
+    display: block;
+
+    &.ng-invalid.ng-dirty {
+        color: red !important;
+    }
+}
+
+p.error {
+    font-size: 14px;
+    margin: 0;
+    color: red;
+}
+
+div.submit {
+    justify-content: center;
+
+    button {
+        border-radius: 25px;
+        padding: 5px 0;
+        font-weight: 600;
+        font-size: 16px;
+        width: 220px;
+        margin: 30px 0 0 0;
+    }
+}

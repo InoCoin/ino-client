@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { ApiProvider } from './ApiProvider';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class BoostProvider {
 
   private path: string = 'boost'
@@ -12,7 +16,12 @@ export class BoostProvider {
   ) { }
 
   getUserBoosts(skip, limit) {
-    return this.ApiProvider.get(`${this.paths}/user/${skip}/${limit}`);
+    return this.ApiProvider.get(`${this.paths}/user/${skip}/${limit}`).pipe(map((res: any) => {
+      if (res.result) {
+        return res.result;
+      }
+      return [];
+    }));
   }
 
   post(data) {

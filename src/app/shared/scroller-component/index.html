@@ -1,0 +1,28 @@
+<div class="box">
+    <div class="list" #list>
+        <div class="item" *ngFor="let new of data; trackBy: trackByFn">
+            <a aria-label="Виж" [href]="new.url" target="_blank">
+                <lazy-image-component class="flex" objectFit="cover" [src]="new.thumbnail || new.originalImageUrl"
+                    width="100%" height="250px">
+                </lazy-image-component>
+                <p>
+                    {{new.shortTitle}}
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <div class="prev" (click)="prev()">
+        <a matRipple>
+            <lazy-image-component src="/assets/images/arrow.png" width="23px" height="40px">
+            </lazy-image-component>
+        </a>
+    </div>
+
+    <div class="next" (click)="next()">
+        <a matRipple>
+            <lazy-image-component src="/assets/images/arrow.png" width="23px" height="40px">
+            </lazy-image-component>
+        </a>
+    </div>
+</div>

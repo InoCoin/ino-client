@@ -1,0 +1,322 @@
+@import '../../../../stylesheets/variables';
+
+div.gradient {
+    div.container {
+        padding-top: 50px;
+
+        div.configuration {
+            align-items: flex-start;
+
+            h2 {
+                color: $blue;
+                margin: 0;
+                padding-bottom: 3px;
+                border-bottom: solid 1px rgba(128, 128, 128, 0.45);
+            }
+
+            div.info {
+                flex: 1;
+                border-radius: 12px;
+                -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                padding: 15px;
+                z-index: 1;
+                background-color: white;
+
+                div {
+                    margin-top: 15px;
+
+                    p {
+                        color: gray;
+                        margin: 0;
+                    }
+
+                    h3 {
+                        color: $blue;
+                        margin: 0;
+                        font-weight: 400;
+                    }
+                }
+
+            }
+
+            div.wallets {
+                flex: 4.5;
+                border-radius: 12px;
+                -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+                padding: 15px;
+                margin-left: 25px;
+                z-index: 1;
+                background-color: white;
+
+                div.items {
+                    max-height: 395px !important;
+                }
+
+                wallet-component {
+                    display: block;
+
+                    &:not(:last-of-type) {
+                        border-bottom: solid 1px rgba(128, 128, 128, 0.3);
+                        margin-bottom: 5px;
+                        padding-bottom: 5px;
+                    }
+                }
+
+                div.actions {
+                    justify-content: center;
+
+                    button {
+                        border-radius: 25px;
+                        padding: 5px 0;
+                        font-weight: 600;
+                        width: 240px;
+                        margin: 15px 0 0 0;
+                        font-size: 16px;
+
+                        &:first-child {
+                            margin-right: 20px;
+                        }
+                    }
+
+                    div.more {
+                        width: 140px;
+                        margin-left: 15px;
+
+                        button {
+                            width: 140px;
+                        }
+                    }
+                }
+            }
+        }
+
+        div.items {
+            max-height: 307px;
+            overflow: auto;
+        }
+
+        div.action {
+            justify-content: center;
+
+            button {
+                border-radius: 25px;
+                padding: 5px 0;
+                font-weight: 600;
+                font-size: 16px;
+                width: 200px;
+                margin: 15px 0 0 0;
+            }
+        }
+
+
+        div.transaction {
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 12px;
+
+            h2 {
+                color: $blue;
+                margin: 0;
+                padding-bottom: 3px;
+                border-bottom: solid 1px rgba(128, 128, 128, 0.45);
+            }
+
+            div.header {
+                h3 {
+                    padding: 0 10px 10px 10px;
+                    margin: 10px 0 0 0;
+
+                    &:not(:last-of-type) {
+                        border-right: solid 1px rgba(128, 128, 128, 0.45);
+                    }
+
+                    &:nth-child(1) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(2) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(3) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(4) {
+                        flex: 0.4;
+                    }
+
+                    &:nth-child(5) {
+                        flex: 0.6;
+                    }
+                }
+            }
+
+            div.item {
+                border-top: solid 1px rgba(128, 128, 128, 0.45);
+
+                div.title {
+                    flex: 2;
+                    word-break: break-all;
+                    padding: 10px;
+                }
+
+                h4 {
+                    padding: 10px;
+                    margin: 0;
+                    word-break: break-word;
+                    color: $blue;
+                    font-weight: 400;
+
+                    &:not(:last-of-type) {
+                        border-right: solid 1px rgba(128, 128, 128, 0.3);
+                    }
+
+                    &:nth-child(1) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(2) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(3) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(4) {
+                        flex: 0.4;
+                        color: gray;
+                    }
+
+                    &:nth-child(5) {
+                        flex: 0.6;
+                        color: gray;
+                    }
+                }
+            }
+
+
+        }
+
+        div.boosts {
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 12px;
+
+            h2 {
+                color: $blue;
+                margin: 0;
+                padding-bottom: 3px;
+                border-bottom: solid 1px rgba(128, 128, 128, 0.45);
+            }
+
+            div.items {
+                max-height: 368px !important;
+            }
+
+            div.header {
+                h3 {
+                    padding: 0 10px 10px 10px;
+                    margin: 10px 0 0 0;
+
+                    &:not(:last-of-type) {
+                        border-right: solid 1px rgba(128, 128, 128, 0.45);
+                    }
+
+                    &:nth-child(1) {
+                        flex: 2;
+                    }
+
+                    &:nth-child(2) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(3) {
+                        flex: 0.4;
+                    }
+
+                    &:nth-child(4) {
+                        flex: 0.6;
+                    }
+                }
+            }
+
+            div.item {
+                border-top: solid 1px rgba(128, 128, 128, 0.45);
+
+                div.title {
+                    padding: 0 10px;
+                    flex: 2;
+                    word-break: break-all;
+                    border-right: solid 1px rgba(128, 128, 128, 0.45);
+
+                    lazy-image-component {
+                        margin: 10px 10px 10px 0;
+                        overflow: hidden;
+                        border-radius: 12px;
+                        min-width: 200px;
+                        width: 200px;
+                        height: 140px;
+                    }
+
+                    div.name {
+                        border-left: solid 1px rgba(128, 128, 128, 0.45);
+                        padding: 10px;
+
+                        p {
+                            margin: 0;
+
+                            &:nth-of-type(2) {
+                                color: $blue;
+                            }
+                        }
+
+                    }
+
+                }
+
+                h4 {
+                    padding: 10px;
+                    margin: 0;
+                    word-break: break-word;
+                    color: $blue;
+                    font-weight: 400;
+
+                    &:not(:last-of-type) {
+                        border-right: solid 1px rgba(128, 128, 128, 0.3);
+                    }
+
+                    &:nth-child(1) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(2) {
+                        flex: 1;
+                    }
+
+                    &:nth-child(3) {
+                        flex: 0.4;
+                        color: gray;
+                    }
+
+                    &:nth-child(4) {
+                        flex: 0.6;
+                        color: gray;
+                    }
+                }
+            }
+
+        }
+    }
+}

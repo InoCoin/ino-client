@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ApiProvider } from './ApiProvider';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ProjectProvider {
 
   private path: string = 'project'
@@ -15,8 +18,8 @@ export class ProjectProvider {
     return this.ApiProvider.get(`${this.path}/${id}`);
   }
 
-  getMany(skip, limit) {
-    return this.ApiProvider.get(`${this.paths}/${skip}/${limit}`);
+  getMany(sort, category, skip, limit) {
+    return this.ApiProvider.get(`${this.paths}/${sort}/${category}/${skip}/${limit}`);
   }
 
   getUserProjects(skip, limit) {
@@ -31,6 +34,12 @@ export class ProjectProvider {
     return this.ApiProvider.put(this.path, {
       projectId,
       data: data
+    });
+  }
+
+  updateToVip(projectId) {
+    return this.ApiProvider.put(`${this.path}/vip`, {
+      projectId: projectId
     });
   }
 

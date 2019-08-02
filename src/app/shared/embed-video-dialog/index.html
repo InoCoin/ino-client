@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <div class="header">
+    <h3>Embed video</h3>
+  </div>
+  <mat-form-field color="primary">
+    <textarea matInput placeholder="Insert embed video code here..." autocomplete="off" formControlName="video"
+      type="text" rows="7">
+      </textarea>
+  </mat-form-field>
+  <div *ngFor="let key of getKeys()">
+    <div *ngFor="let err of errors[key]" class="error">
+      {{err}}
+    </div>
+  </div>
+  <div class="actions flex">
+    <button mat-flat-button color="primary" (click)="submit()">
+      Submit
+    </button>
+  </div>
+</form>

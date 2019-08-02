@@ -5,7 +5,10 @@ import { catchError } from 'rxjs/operators';
 
 import { Environment } from '../../globals/config';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class FileProvider {
 
   constructor(

@@ -1,11 +1,14 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 
+@Injectable({
+  providedIn: 'root'
+})
 
-@Injectable()
 export class LoaderProvider {
 
-  private loader: any;
+  private timer;
+  private loader: HTMLElement;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -15,11 +18,22 @@ export class LoaderProvider {
   }
 
   show() {
-    this.loader.style.display = 'block';
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.loader.style.display = 'block';
+    }
   }
 
-  hide() {
-    this.loader.style.display = 'none';
+  hide(time?) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.timer = setTimeout(() => {
+        this.loader.style.display = 'none';
+        this.timer = null;
+      }, time || 200);
+    }
   }
 
 }

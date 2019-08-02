@@ -1,0 +1,201 @@
+<div class="gradient">
+    <div class="container">
+        <div class="flex configuration">
+            <div class="info">
+                <h2>Info</h2>
+                <div>
+                    <p>
+                        Ino Coin price:
+                    </p>
+                    <h3>
+                        {{ coinlib.price | number:'1.0-6' }} USD
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        My INO balance:
+                    </p>
+                    <h3>
+                        {{ balance | number:'1.0-6' }} INO
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        My INO balance in USD:
+                    </p>
+                    <h3>
+                        {{ balance * coinlib.price | number:'1.0-2' }} USD
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        My ETH balance:
+                    </p>
+                    <h3>
+                        {{ethBalance | number:'1.0-6'}} ETH
+                    </h3>
+                </div>
+            </div>
+            <div class="wallets">
+                <h2>
+                    My Wallets
+                </h2>
+                <div class="items">
+                    <wallet-component *ngFor="let wallet of accounts; trackBy: trackByFn" [data]="wallet">
+                    </wallet-component>
+                </div>
+                <div class="actions flex">
+                    <button mat-flat-button color="primary" (click)="addExistingAccount()">
+                        Add an existing account
+                    </button>
+                    <button mat-flat-button color="primary" (click)="addNewAccount()">
+                        Add new account
+                    </button>
+                    <div class="more">
+                        <button *ngIf="!loadedAccounts" mat-flat-button color="primary" (click)="showMoreAccounts()">
+                            Show more
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="transaction">
+            <h2>
+                Incoming Transactions
+            </h2>
+            <div class="items">
+                <div class="flex header">
+                    <h3>
+                        From
+                    </h3>
+                    <h3>
+                        To
+                    </h3>
+                    <h3>
+                        Transaction
+                    </h3>
+                    <h3>
+                        Amount
+                    </h3>
+                    <h3>
+                        Date
+                    </h3>
+                </div>
+                <div class="item flex" *ngFor="let item of transactionsIn; trackBy: trackByFn">
+                    <h4 copy>
+                        {{item.from}}
+                    </h4>
+                    <h4 copy>
+                        {{item.to}}
+                    </h4>
+                    <h4 copy>
+                        {{item.transaction}}
+                    </h4>
+                    <h4>
+                        {{ item.value | number:'1.0-6' }} INO
+                    </h4>
+                    <h4>
+                        {{item.createdAt | date:'dd/MM/yyyy, H:mm'}}
+                    </h4>
+                </div>
+            </div>
+            <div class="action flex" *ngIf="!loadedIn">
+                <button mat-flat-button color="primary" (click)="showMoreInTransactions()">
+                    Show More
+                </button>
+            </div>
+        </div>
+        <div class="transaction">
+            <h2>
+                Outcoming Transactions
+            </h2>
+            <div class="items">
+                <div class="flex header">
+                    <h3>
+                        From
+                    </h3>
+                    <h3>
+                        To
+                    </h3>
+                    <h3>
+                        Transaction
+                    </h3>
+                    <h3>
+                        Amount
+                    </h3>
+                    <h3>
+                        Date
+                    </h3>
+                </div>
+                <div class="item flex" *ngFor="let item of transactionsOut; trackBy: trackByFn">
+                    <h4 copy>
+                        {{item.from}}
+                    </h4>
+                    <h4 copy>
+                        {{item.to}}
+                    </h4>
+                    <h4 copy>
+                        {{item.transaction}}
+                    </h4>
+                    <h4>
+                        {{ item.value | number:'1.0-6' }} INO
+                    </h4>
+                    <h4>
+                        {{item.createdAt | date:'dd/MM/yyyy, H:mm'}}
+                    </h4>
+                </div>
+            </div>
+            <div class="action flex" *ngIf="!loadedOut">
+                <button mat-flat-button color="primary" (click)="showMoreOutTransactions()">
+                    Show More
+                </button>
+            </div>
+        </div>
+        <div class="boosts project">
+            <h2>
+                Boosted Projects
+            </h2>
+            <div class="items">
+                <div class="flex header">
+                    <h3>
+                        Project
+                    </h3>
+                    <h3>
+                        Transaction
+                    </h3>
+                    <h3>
+                        Amount
+                    </h3>
+                    <h3>
+                        Date
+                    </h3>
+                </div>
+                <div class="item flex" *ngFor="let item of boosts; trackBy: trackByFn">
+                    <div class="title flex">
+                        <lazy-image-component objectFit="cover"
+                            [src]="api_url + '/min_uploads/images/' + item.project.image" width="100%" height="100%">
+                        </lazy-image-component>
+                        <div class="name">
+                            <p>{{item.project.title}}</p>
+                            <p copy>{{item.project.address}}</p>
+                        </div>
+                    </div>
+                    <h4 copy>
+                        {{item.transaction}}
+                    </h4>
+                    <h4>
+                        {{ item.value | number:'1.0-6' }} INO
+                    </h4>
+                    <h4>
+                        {{item.createdAt | date:'dd/MM/yyyy, H:mm'}}
+                    </h4>
+                </div>
+            </div>
+            <div class="action flex" *ngIf="!loadedBo">
+                <button mat-flat-button color="primary" (click)="showMoreBoosts()">
+                    Show More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

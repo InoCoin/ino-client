@@ -1,0 +1,48 @@
+@import '../../../../stylesheets/variables';
+
+div.info {
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        font-weight: 500;
+        margin: 5px 0;
+
+        &:first-child {
+            width: 100px;
+        }
+
+        &:nth-child(2) {
+            color: $blue;
+        }
+    }
+
+    button {
+        lazy-image-component {
+            justify-content: center;
+        }
+    }
+}
+
+div.price {
+    p {
+        color: gray;
+        margin: 2px 0;
+        font-weight: 600;
+    }
+}
+
+div.actions {
+    margin: 5px 0;
+    button {
+        color: $blue;
+        font-size: 18px;
+        font-weight: 500;
+        min-width: unset !important;
+        padding: 2px !important;
+        line-height: 21px !important;
+        &:not(:first-child){
+            margin-left: 10px;
+        }
+    }
+}

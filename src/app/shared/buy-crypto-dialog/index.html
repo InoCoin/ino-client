@@ -1,0 +1,59 @@
+<div class="header">
+    <h3>Buy Ino coins</h3>
+</div>
+<mat-form-field color="primary">
+    <mat-select placeholder="Select currency" [(ngModel)]="currency" (selectionChange)="onSelect()">
+        <mat-option [value]="paymentMethods.ether.key">
+            {{paymentMethods.ether.name}}
+        </mat-option>
+        <mat-option [value]="paymentMethods.bitcoin.key">
+            {{paymentMethods.bitcoin.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<div [ngSwitch]="currency">
+    <form [formGroup]="formETH" *ngSwitchCase="paymentMethods.ether.key">
+        <mat-form-field color="primary">
+            <input matInput placeholder="Amount of ino coins..." (keyup)="onChange()" formControlName="amount"
+                type="number" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field color="primary">
+            <input matInput autocomplete="off" placeholder="Selected wallet password..." formControlName="password"
+                type="password" />
+        </mat-form-field>
+        <div class="price" [hidden]="isHidden()">
+            Coins price: {{total | number:'1.0-6'}}
+            <span class="usd">{{paymentMethods[currency].symbol}}</span>
+        </div>
+        <div class="actions flex">
+            <button mat-flat-button color="primary" (click)="onSubmit()">
+                Buy
+            </button>
+        </div>
+    </form>
+    <form [formGroup]="formBTC" *ngSwitchCase="paymentMethods.bitcoin.key">
+        <mat-form-field color="primary">
+            <input matInput placeholder="Amount of ino coins..." (keyup)="onChange()" formControlName="amount"
+                type="number" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field color="primary">
+            <input matInput autocomplete="off" placeholder="Select contact email..." formControlName="email"
+                type="email" />
+        </mat-form-field>
+        <div class="price" [hidden]="isHidden()">
+            Coins price: {{total | number:'1.0-6'}}
+            <span class="usd">{{paymentMethods[currency].symbol}}</span>
+        </div>
+        <div class="actions flex">
+            <button mat-flat-button color="primary" (click)="onSubmit()" class="col-12">
+                Buy
+            </button>
+        </div>
+    </form>
+</div>
+<div class="error">
+    {{error}}
+</div>
+<div class="green">
+    {{message}}
+</div>

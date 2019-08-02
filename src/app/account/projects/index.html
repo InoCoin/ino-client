@@ -1,0 +1,20 @@
+<div class="gradient">
+    <div class="container">
+        <h2>
+            My Projects
+        </h2>
+        <p>
+            Here you can view, edit and delete your innovative projects.
+        </p>
+        <div class="projects">
+            <div class="list flex">
+                <project-component *ngFor="let project of projects; trackBy: trackProjects" class="flex" [data]="project" [edit]="true" [delete]="true"></project-component>
+            </div>
+            <div class="pagination flex">
+                <a *ngFor="let p of pages; trackBy: trackPages" [class.active]="p == page" routerLink="/account/projects" [queryParams]="{page: p}" queryParamsHandling="merge">
+                    {{p}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

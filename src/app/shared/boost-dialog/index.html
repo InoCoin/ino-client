@@ -1,0 +1,33 @@
+<form [formGroup]="boostForm">
+  <div class="header">
+    <h3>Boost Ino project</h3>
+  </div>
+  <mat-form-field color="primary">
+    <mat-select formControlName="selected">
+      <mat-option *ngFor="let account of accounts; let i = index" [value]="i">{{account.name}}
+        {{account.balance | number}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput placeholder="Amount 0...." formControlName="amount" autocomplete="off" />
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput placeholder="To 0x00000...." formControlName="address" />
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput placeholder="Password..." formControlName="password" type="password" />
+  </mat-form-field>
+  <div class="error">
+    {{error}}
+  </div>
+  <div *ngFor="let key of getKeys()">
+    <div *ngFor="let err of errors[key]" class="error">
+      {{err}}
+    </div>
+  </div>
+  <div class="actions flex">
+    <button mat-flat-button color="primary" (click)="onSubmit()">
+      Boost
+    </button>
+  </div>
+</form>

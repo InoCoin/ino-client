@@ -1,7 +1,7 @@
 {
-  "name": "ino-coin",
-  "short_name": "ino-coin",
-  "theme_color": "#1976d2",
+  "name": "application client",
+  "short_name": "application client",
+  "theme_color": "#000000",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

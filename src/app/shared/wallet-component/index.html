@@ -1,0 +1,27 @@
+<div clas="wallet">
+    <div class="info flex">
+        <h3>
+            {{data.name}}
+        </h3>
+        <h3 copy>
+            {{data.address}}
+        </h3>
+        <button mat-icon-button aria-label="close" (click)="onDelete()">
+            <lazy-image-component class="flex" src="/assets/images/close.png" height="42px" objectFit="cover">
+            </lazy-image-component>
+        </button>
+    </div>
+    <div class="price">
+        <p>
+            {{balance}} INO
+        </p>
+        <p>
+            {{ethBalance | number:'1.0-6'}} ETH
+        </p>
+    </div>
+    <div class="actions">
+        <button mat-button (click)="exportPrivateKey()">Key</button>
+        <button mat-button (click)="buy()">Buy</button>
+        <button mat-button (click)="sendINO()">Send</button>
+    </div>
+</div>

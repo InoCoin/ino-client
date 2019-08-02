@@ -1,0 +1,122 @@
+<div class="gradient">
+    <div class="container">
+        <div class="flex">
+            <div class="gallery">
+                <lazy-image-component objectFit="cover" [src]="api_url + '/min_uploads/images/' + project.image"
+                    width="100%" height="400px">
+                </lazy-image-component>
+                <div class="images flex">
+                    <lazy-image-component *ngFor="let item of project.gallery | slice:0:5;" objectFit="cover"
+                        [src]="api_url + '/min_uploads/images/' + item.name" width="100%" height="65px"
+                        (click)="onOpenGallery()">
+                    </lazy-image-component>
+                </div>
+            </div>
+            <div class="info">
+                <div class="name flex">
+                    <h2>
+                        {{project.title}}
+                    </h2>
+                    <div class="category" [style.backgroundColor]="categories[project.category].color">
+                        {{categories[project.category].name}}
+                    </div>
+                </div>
+                <p class="description">
+                    {{project.subtitle}}
+                </p>
+                <p class="address-text">
+                    Project address in Ethereum Network:
+                </p>
+                <p class="address" copy>
+                    {{project.address}}
+                </p>
+                <p class="balance">
+                    <span class="black">
+                        Current balance -
+                    </span>
+                    <span class="balance">
+                        {{ project.funds | number:'1.0-6' }} INO
+                    </span>
+                    <span class="boosted">
+                        ({{getFundsLength()}})
+                    </span>
+                </p>
+                <div class="flex buttons">
+                    <div class="flex actions">
+                        <button mat-flat-button color="primary" class="round" (click)="onSendCoins()">
+                            Boost Project
+                        </button>
+                        <button mat-flat-button class="shadow" (click)="onVote()">
+                            <div class="flex">
+                                <lazy-image-component objectFit="contain"
+                                    [src]="project.isFollowed ? '/assets/images/liked.png' : '/assets/images/like.png'"
+                                    width="28px" height="45px">
+                                </lazy-image-component>
+                                <span class="blue">
+                                    Like
+                                </span>
+                                <span *ngIf="project.followersSize > 0">
+                                    | {{ project.followersSize }}
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="share flex">
+                        <a (click)="share()" aria-label="facebook">
+                            <lazy-image-component src="/assets/images/facebook-gray.png" width="14px" height="32px">
+                            </lazy-image-component>
+                        </a>
+                        <a (click)="shareTwitter()" aria-label="twitter" share>
+                            <lazy-image-component src="/assets/images/twitter-gray.png" width="39px" height="32px">
+                            </lazy-image-component>
+                        </a>
+                        <a aria-label="share" (click)="copyLink()">
+                            <lazy-image-component src="/assets/images/share.png" width="31px" height="31px">
+                            </lazy-image-component>
+                            <p #copy class="link">
+                                {{'https://platform.inocoin.eu/project/' + project._id}}
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about flex">
+            <div>
+                <h3>
+                    About the project
+                </h3>
+                <div [innerHTML]="project.content | safeHTML">
+
+                </div>
+                <div class="video" [innerHTML]="project?.video | safeHTML">
+
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="rewards">
+                    <h3>
+                        Rewards
+                    </h3>
+                    <div class="reward" *ngFor="let item of project?.rewards">
+                        <h4>
+                            {{item.from}} - {{item.to}} InoCoin:
+                        </h4>
+                        <p>
+                            {{item.reward}}
+                        </p>
+                    </div>
+                    <div *ngIf="project?.rewards?.length == 0" class="no-rewards">
+                        This project does not have rewards!
+                    </div>
+                </div>
+                <div class="twitter">
+                    <a class="twitter-timeline" data-height="500" data-theme="light" data-link-color="#2B7BB9"
+                        href="https://twitter.com/InoCoin2018?ref_src=twsrc%5Etfw"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

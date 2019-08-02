@@ -1,0 +1,20 @@
+<div class="success">
+    <h1>
+        Welcome to InoCoin Platform
+    </h1>
+    <h2 *ngIf="result?.error; else success" class="error">
+        {{result.error}}
+    </h2>
+
+    <ng-template #success>
+        <h2>
+            Thank you, for your registration. Enjoy with InoCoin platform, you are now logged in.
+        </h2>
+    </ng-template>
+
+    <div class="submit flex">
+        <button mat-flat-button color="primary" (click)="close()">
+            OKAY
+        </button>
+    </div>
+</div>

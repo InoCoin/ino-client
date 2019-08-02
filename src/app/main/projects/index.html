@@ -1,0 +1,28 @@
+<div class="gradient">
+    <div class="container">
+        <h2>
+            Ino Projects
+        </h2>
+        <p>
+            Ino Coin is the global platform for funding and guiding prospective young blockchain projects to success.
+        </p>
+        <div class="menus flex">
+            <menu-component name="Choose Category" [data]="sortMethods" [value]="sort" (change)="changeSort($event)">
+            </menu-component>
+            <menu-component name="Sort by" [data]="categoryMethods" [value]="category"
+                (change)="changeCategory($event)"></menu-component>
+        </div>
+        <div class="projects">
+            <div class="list flex">
+                <project-component *ngFor="let project of projects; trackBy: trackProjects" class="flex"
+                    [data]="project"></project-component>
+            </div>
+            <div class="pagination flex">
+                <a *ngFor="let p of pages; trackBy: trackPages" [class.active]="p == page" routerLink="/projects"
+                    [queryParams]="{page: p}" queryParamsHandling="merge">
+                    {{p}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

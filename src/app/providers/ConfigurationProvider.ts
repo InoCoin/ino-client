@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ApiProvider } from './ApiProvider';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ConfigurationProvider {
 
   private path: string = 'configuration'

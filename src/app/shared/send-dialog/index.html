@@ -1,0 +1,27 @@
+<div class="header">
+  <h3>Send to</h3>
+</div>
+<form [formGroup]="sendForm">
+  <mat-form-field color="primary">
+    <input matInput  autocomplete="off" placeholder="Amount" autocomplete="off" formControlName="amount" />
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput  autocomplete="off" placeholder="Ino account address ex. 0x00000...." autocomplete="off" formControlName="address" />
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput  autocomplete="off" placeholder="Password..." formControlName="password" type="password" />
+  </mat-form-field>
+  <div class="error col-2-offset col-8">
+    {{error}}
+  </div>
+  <div *ngFor=" let key of getKeys()">
+    <div *ngFor="let err of errors[key]" class="error">
+      {{err}}
+    </div>
+  </div>
+  <div class="actions flex">
+    <button mat-flat-button color="primary" (click)="onSubmit()">
+      Send
+    </button>
+  </div>
+</form>

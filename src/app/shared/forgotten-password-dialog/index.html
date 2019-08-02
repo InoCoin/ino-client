@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1>
+            Forgotten password
+        </h1>
+        <input-component [formGroup]="form" formName="email" autocomplete="off" type="email" placeholder="E-mail Address" image="email.png" [errors]="this.errors.email || [] "></input-component>
+        <div class="flex">
+            <a (click)="openLoginDialog()">
+                Login with your profile
+            </a>
+            <span>
+                |
+            </span>
+            <a (click)="openRegister()">
+                Register now
+            </a>
+        </div>
+        <div class="submit flex">
+            <button mat-flat-button color="primary" type="submit" [disabled]="isSubmitted">
+                Reset
+            </button>
+        </div>
+        <a class="flex" (click)="facebookAuth()" aria-label="facebook">
+            <lazy-image-component src="/assets/images/facebook.png" width="28px" height="28px">
+            </lazy-image-component>
+            Login with Facebook
+        </a>
+    </form>
+</div>

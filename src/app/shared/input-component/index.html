@@ -1,0 +1,15 @@
+<div class="relative" [formGroup]="formGroup">
+    <input 
+    [formControlName]="formName" 
+    [type]="type" 
+    [placeholder]="placeholder" 
+    [autocomplete]="autocomplete" 
+    aria-labelledby="text" 
+    [style.backgroundImage]="getImage()"
+    (keyup)="onChange($event)"/>
+    <div class="errors">
+        <p *ngFor="let error of errors">
+            {{error}}
+        </p>
+    </div>
+</div>

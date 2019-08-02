@@ -1,0 +1,15 @@
+<div class="photo relative">
+    <img #img [src]="api_url + '/min_uploads/images/' + data.gallery[index].name" (load)="onLoad(img)" />
+    <div class="arrow flex left">
+        <button (click)="move(false)">
+            <lazy-image-component src="/assets/images/arrow.png" width="23px" height="40px" verticalAlign="top">
+            </lazy-image-component>
+        </button>
+    </div>
+    <div class="arrow flex right">
+        <button (click)="move(true)">
+            <lazy-image-component src="/assets/images/arrow.png" width="23px" height="40px" verticalAlign="top">
+            </lazy-image-component>
+        </button>
+    </div>
+</div>

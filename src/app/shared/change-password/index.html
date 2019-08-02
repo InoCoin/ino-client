@@ -1,0 +1,19 @@
+<div class="register">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h1>
+            Change password
+        </h1>
+        <h2>
+            Please, enter your new password here
+        </h2>
+
+        <input-component [formGroup]="form" formName="currentPassword" autocomplete="off" type="password" placeholder="Current Password *" image="password.png" [errors]="errors.currentPassword || [] "></input-component>
+        <input-component [formGroup]="form" formName="password" autocomplete="off" type="password" placeholder="Password *" image="password.png" [errors]="errors.password || [] "></input-component>
+        <input-component [formGroup]="form" formName="passwordConfirm" autocomplete="off" type="password" placeholder="Confirm Password *" image="password.png" [errors]="errors.passwordConfirm || [] "></input-component>
+        <div class="submit flex">
+            <button mat-flat-button color="primary" [disabled]="isSubmitted">
+                SUBMIT
+            </button>
+        </div>
+    </form>
+</div>

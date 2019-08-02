@@ -1,26 +1,25 @@
 import { Route } from '@angular/router';
-import { PageNotFound } from './404';
-import { AdminGuardProvider } from './providers';
+import { AuthGuardProvider, AdminGuardProvider } from './guards';
+
 export const MODULE_ROUTES: Route[] = [
   {
     path: '',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: () => import('./main/module').then(m => m.MainModule)
   },
   {
     path: 'account',
-    loadChildren: './account/account.module#AccountModule'
+    canActivate: [AuthGuardProvider],
+    loadChildren: () => import('./account/module').then(m => m.AccountModule)
   },
   {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule',
-    canActivate: [AdminGuardProvider]
+    canActivate: [AdminGuardProvider],
+    loadChildren: () => import('./admin/module').then(m => m.AdminModule)
   },
   {
     path: '**',
-    component: PageNotFound
+    redirectTo: ''
   },
-]
+];
 
-export const MODULE_COMPONENTS = [
-  PageNotFound
-]
+export const MODULE_COMPONENTS = [];

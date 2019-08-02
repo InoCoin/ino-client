@@ -1,0 +1,179 @@
+<div class="gradient">
+    <div class="container">
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <div class="input-container">
+                <h2>
+                    Basic Info
+                </h2>
+                <div class="input">
+                    <h3>
+                        Title*
+                    </h3>
+                    <input type="text" placeholder="Add a catchy title for your project" autocomplete="off"
+                        aria-labelledby="project name" formControlName="title" />
+                    <div class="errors">
+                        <p *ngFor="let error of errors?.title">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
+                <div class="input">
+                    <h3>
+                        Subtitle*
+                    </h3>
+                    <textarea type="text"
+                        placeholder="Write a clear, brief subtitle that helps people quickly understand the gist of your project."
+                        autocomplete="off" aria-labelledby="project description" formControlName="subtitle"
+                        maxlength="150"></textarea>
+                    <p>{{projectForm.controls.subtitle.value?.length || 0}}/150</p>
+                    <div class="errors">
+                        <p *ngFor="let error of errors?.subtitle">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
+                <div class="category flex">
+                    <h3>
+                        Category*
+                    </h3>
+                    <menu-component name="Sort by" [data]="categoryMethods" [value]="category"
+                        (change)="changeCategory($event)"></menu-component>
+                </div>
+            </div>
+            <div class="input-container">
+                <h2>
+                    More Info
+                </h2>
+
+                <div class="input">
+                    <h3>
+                        Project Description*
+                    </h3>
+                    <div class="editor">
+                        <editor apiKey="5k807mtlm6lmuh87ubbt0ft83fq87dty3jy9odhqvyjkfsfz" [init]="{height: 400}"
+                            formControlName="content">
+                        </editor>
+                        <div class="errors">
+                            <p *ngFor="let error of errors?.content">
+                                {{error}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <h3>
+                        Add cover image*
+                    </h3>
+                    <div class="file flex" (click)="onAddFile()">
+
+                        <lazy-image-component *ngIf="image == null" objectFit="cover" src="/assets/images/camera.png"
+                            width="54px" height="43px">
+                        </lazy-image-component>
+                        <lazy-image-component *ngIf="image" objectFit="cover" [src]="image?.blobUrl || api_url + '/min_uploads/images/' +image" width="100%"
+                            height="100%">
+                        </lazy-image-component>
+                    </div>
+                    <div class="errors">
+                        <p *ngFor="let error of errors?.image">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <h3>
+                        Add project images*
+                    </h3>
+                    <div class="file flex" (click)="onAddFiles()">
+                        <lazy-image-component objectFit="cover" src="/assets/images/camera.png" width="54px"
+                            height="43px">
+                        </lazy-image-component>
+                    </div>
+                    <div class="files">
+                        <a class="photo" *ngFor="let photo of gallery; let i = index">
+                            <img [src]="getImageUrl(i)" alt="photo" />
+                            <a class="delete" matRipple (click)="removeImage(i)">
+                                <lazy-image-component class="flex" src="/assets/images/close.png" height="32px"
+                                    width="32px" objectFit="contain">
+                                </lazy-image-component>
+                            </a>
+                        </a>
+                    </div>
+                    <div class="errors">
+                        <p *ngFor="let error of errors?.gallery">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <h3>
+                        Add video*
+                    </h3>
+                    <div class="file flex" (click)="setVideo()">
+                        <lazy-image-component objectFit="cover" src="/assets/images/video.png" width="64px"
+                            height="85px">
+                        </lazy-image-component>
+                    </div>
+                    <div *ngIf="video" [innerHTML]="video | safeHTML" class="video">
+
+                    </div>
+                </div>
+            </div>
+            <div class="input-container">
+                <h2>
+                    Payment & Rewards
+                </h2>
+                <div class="input">
+                    <h3>
+                        Ethereum address*
+                    </h3>
+                    <input type="text" placeholder="Add a project address in Ethereum network" autocomplete="off"
+                        aria-labelledby="project name" formControlName="address" />
+                    <div class="errors">
+                        <p *ngFor="let error of errors?.address">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
+                <form [formGroup]="rewardForm" (ngSubmit)="onAddReward()">
+                    <div class="input">
+                        <h3>
+                            Rewards
+                        </h3>
+                        <div class="rewards flex">
+                            <input formControlName="from" type="text" placeholder="From (INO)" autocomplete="off"
+                                aria-labelledby="from" />
+                            <input formControlName="to" type="text" placeholder="To (INO)" autocomplete="off"
+                                aria-labelledby="to" />
+                        </div>
+                        <textarea formControlName="reward" type="text" placeholder="Add a description of the reward"
+                            autocomplete="off" aria-labelledby="project reward"></textarea>
+                    </div>
+                    <div class="rewards" *ngFor="let item of rewards; let i = index">
+                        <div>
+                            <h3>
+                                {{item.from}} - {{item.to}} INO
+                            </h3>
+                            <p>
+                                {{item.reward}}
+                            </p>
+                            <a class="delete" matRipple (click)="removeReward(i)">
+                                <lazy-image-component class="flex" src="/assets/images/close.png" height="32px"
+                                    width="32px" objectFit="contain">
+                                </lazy-image-component>
+                            </a>
+                        </div>
+                    </div>
+                    <button mat-flat-button class="white" type="submit">
+                        Add reward
+                    </button>
+                </form>
+            </div>
+            <button mat-flat-button color="primary" class="margin" type="submit" [disabled]="isSubmit">
+                SUBMIT PROJECT
+            </button>
+        </form>
+    </div>
+</div>

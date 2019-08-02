@@ -1,44 +1,37 @@
 import { ApiProvider } from './ApiProvider';
 import { UserProvider } from './UserProvider';
+import { NewsProvider } from './NewsProvider';
 import { ProjectProvider } from './ProjectProvider';
 import { AccountProvider } from './AccountProvider';
+import { BoostProvider } from './BoostProvider';
 import { TransactionProvider } from './TransactionProvider';
-import { VoteProvider } from './VoteProvider';
 import { PaymentProvider } from './PaymentProvider';
 import { ConfigurationProvider } from './ConfigurationProvider';
-import { BoostProvider } from './BoostProvider';
+import { UpdateProvider } from './UpdateProvider';
 import { SocketProvider } from './SocketProvider';
-import { PlaceProvider } from './PlaceProvider';
 import { FileProvider } from './FileProvider';
-import { AccountPlaceProvider } from './AccountPlaceProvider';
+import { VoteProvider } from './VoteProvider';
 
-import { AuthGuardProvider } from './AuthGuardProvider';
-import { AdminGuardProvider } from './AdminGuardProvider';
-import { NotAuthGuardProvider } from './NotAuthGuardProvider';
-import { TransferState } from './TransferState';
+import { MapProvider } from './MapProvider';
 import { LoaderProvider } from './LoaderProvider';
 import { Web3Provider } from './Web3Provider';
 
 export {
   ApiProvider,
   UserProvider,
+  NewsProvider,
   ProjectProvider,
+  BoostProvider,
+  PaymentProvider,
   AccountProvider,
   TransactionProvider,
-  VoteProvider,
-  PaymentProvider,
-  ConfigurationProvider,
-  BoostProvider,
   SocketProvider,
-  PlaceProvider,
   FileProvider,
-  AccountPlaceProvider,
+  VoteProvider,
+  ConfigurationProvider,
+  UpdateProvider,
 
-  TransferState,
+  MapProvider,
   Web3Provider,
   LoaderProvider,
-  AuthGuardProvider,
-  NotAuthGuardProvider,
-  AdminGuardProvider
-
 };

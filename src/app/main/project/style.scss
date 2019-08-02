@@ -1,0 +1,258 @@
+@import '../../../../stylesheets/variables';
+
+div.gradient {
+    div.container {
+        div.gallery {
+            padding: 50px 15px;
+            flex: 1;
+            min-width: 450px;
+            lazy-image-component {
+                display: block;
+                border-radius: 15px;
+                overflow: hidden;
+                -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);
+                -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);
+                box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);
+                cursor: pointer;
+            }
+
+            div.images {
+                margin-top: 10px;
+
+                lazy-image-component {
+                    max-width: calc(100% * (1/6));
+                    flex-grow: 1;
+                    position: relative;
+                    border-radius: 10px;
+                    transition: ease 400ms;
+                    opacity: 0.8;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        border: 2px solid $blue;
+                        border-radius: 10px;
+                        transition: ease 400ms;
+                        opacity: 0;
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+
+                    &:hover {
+                        opacity: 1;
+
+                        &:after {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        div.info {
+            flex: 1;
+            padding: 50px 15px;
+
+            div.name {
+                justify-content: space-between;
+
+                h2 {
+                    color: $blue;
+                    margin: 0;
+                    margin-right: 10px;
+                    font-weight: 500;
+                }
+
+                div.category {
+                    font-size: 14px;
+                    border-radius: 15px;
+                    color: white;
+                    padding: 3px 10px;
+                    font-weight: 600;
+                    height: 22px;
+                    text-align: center;
+                }
+            }
+
+            p.description {
+                font-size: 18px;
+                color: black;
+            }
+
+            p.address-text {
+                font-size: 18px;
+                color: gray;
+                font-weight: 500;
+                margin: 35px 0 0;
+            }
+
+            p.address {
+                font-size: 18px;
+                color: $blue;
+                font-weight: 500;
+                margin: 0;
+                word-break: break-all;
+            }
+
+            p.balance {
+                font-size: 18px;
+                margin: 35px 0 0;
+                font-weight: 400;
+
+                span.black {
+                    color: black;
+                }
+
+                span.balance {
+                    color: $blue;
+                }
+
+                span.boosted {
+                    color: gray;
+                }
+            }
+
+            div.buttons {
+                margin-top: 25px;
+                justify-content: space-between;
+
+                div.actions {
+
+                    button {
+
+                        height: 45px;
+                        border-radius: 25px;
+                        -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+                        -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+                        box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+
+                        &.round {
+                            padding: 5px 0;
+                            font-weight: 600;
+                            font-size: 18px;
+                            width: 185px;
+                        }
+
+                        &.shadow {
+
+                            margin-left: 25px;
+
+                            div.flex {
+                                align-items: center;
+                                width: 150px;
+                                justify-content: center;
+
+                                span {
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    margin-left: 5px;
+
+                                    &.blue {
+                                        color: $blue;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                div.share {
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+
+                    a {
+                        margin: 0 12px;
+                        cursor: pointer;
+                        padding: 5px;
+                    }
+
+                    p.link {
+                        position: absolute;
+                        top: -10000px;
+                    }
+                }
+            }
+
+
+
+        }
+
+        div.about {
+            padding: 20px 0;
+            align-items: flex-start;
+
+            div:first-child {
+                flex: 5;
+                margin-right: 15px;
+
+                div.video {
+                    height: 465px;
+                    margin-top: 15px;
+                }
+            }
+
+            div.info {
+                flex: 1;
+
+                div.rewards {
+                    min-width: 250px;
+                    -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    background: white;
+                    border-radius: 15px;
+                    padding-bottom: 5px;
+
+                    div.no-rewards {
+                        color: $blue;
+                        padding: 10px;
+                    }
+
+                    h3 {
+                        color: black;
+                        font-weight: 600;
+                        margin: 5px 10px;
+                        padding: 2px 0;
+                        border-bottom: solid 1px rgba(160, 163, 173, 0.4);
+                    }
+
+                    div.reward {
+                        h4 {
+                            color: $blue;
+                            margin: 10px;
+                            font-weight: 500;
+                        }
+
+                        p {
+                            margin: 5px 10px;
+                            font-weight: 400;
+                        }
+
+                    }
+
+                }
+
+                div.twitter{
+                    margin-top: 30px;
+                    width: 250px;
+                    -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.5);
+                    border-radius: 15px;
+                    height: 325px;
+                    overflow: hidden;
+                }
+            }
+
+
+        }
+    }
+}

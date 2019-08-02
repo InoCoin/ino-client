@@ -1,0 +1,56 @@
+@import '../../../../stylesheets/variables';
+
+div.category {
+    position: relative;
+
+    button {
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+        box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+        justify-content: center;
+        width: 205px;
+        margin: 10px;
+        border-radius: 20px;
+
+        div.flex {
+            align-items: center;
+            justify-content: center;
+
+            span {
+                padding: 0 10px;
+                font-size: 16px;
+                color: $blue;
+            }
+        }
+    }
+
+    div.cateogries {
+        z-index: 99;
+        text-align: right;
+        background: white;
+        display: none;
+        position: absolute;
+        width: 186px;
+        padding: 10px;
+        border-radius: 20px;
+        right: 10px;
+        top: 60px;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+        box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+
+        &.active {
+            display: block;
+        }
+
+        a {
+            display: block;
+            cursor: pointer;
+            margin-bottom: 5px;
+
+            &.active {
+                color: $blue;
+            }
+        }
+    }
+}

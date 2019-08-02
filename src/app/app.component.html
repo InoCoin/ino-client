@@ -1,141 +1,146 @@
-<mat-toolbar color="primary">
-  <span class="logo">
-    <a routerLink="/">
-      <img src="/assets/logo.png"/>
-    </a>
-  </span>
-  <span class="spacer"></span>
-  <span class="divider"></span>
-  <div>
-    <span class="menu">
-      <a routerLink="/projects"
-         routerLinkActive="active">
-         Ino Projects
-      </a>
-    </span>
-  </div>
-  <span class="divider"></span>
-  <span class="menu"
-        *ngIf="TransferState.get('user') == null">
-    <a routerLink="/account/login"
-       routerLinkActive="active">
-       Login
-    </a>
-  </span>
-  <span class="menu"
-        *ngIf="TransferState.get('user') && TransferState.get('user').role == userRoles.admin"
-        [matMenuTriggerFor]="configMenu">
-        Admin panel
-  </span>
-  <mat-menu #configMenu="matMenu">
-    <button mat-menu-item
-            (click)="goToConfiguration()">
-      Ino configuration
-    </button>
-    <button mat-menu-item
-          (click)="goToUpdates()">
-      Ino Updates
-    </button>
-    <button mat-menu-item
-            (click)="goToPlaces()">
-      Ino Places
-    </button>
-    <button mat-menu-item
-            (click)="goToNewAccounts()">
-      New Accounts
-    </button>
-    <button mat-menu-item
-            (click)="goToPayments()">
-      Buy requests
-    </button>
-  </mat-menu>
-  <span *ngIf="TransferState.get('user') && TransferState.get('user').role == userRoles.admin"
-        class="divider">
-  </span>
-  <span class="menu"
-        *ngIf="TransferState.get('user')"
-        [matMenuTriggerFor]="menu">
-        My profile
-  </span>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item
-            (click)="goToProjects()">
-      My projects
-    </button>
-    <button mat-menu-item
-            (click)="goToWallet()">
-      My wallet
-    </button>
-  </mat-menu>
-  <span class="divider"></span>
-  <span class="menu"
-        *ngIf="TransferState.get('user') == null">
-    <a routerLink="/account/registration"
-       routerLinkActive="active">
-       Registration
-    </a>
-  </span>
-  <span class="menu"
-        *ngIf="TransferState.get('user')"
-        (click)="onLogOut()">
-    Logout
-  </span>
-  <span class="divider"></span>
-</mat-toolbar>
-<div class="router-outlet">
-  <router-outlet></router-outlet>
-</div>
-<footer>
-  <div class="row">
-    <div class="col-2-offset col-8 footer">
-      <h4 class="col-6">&#169; Inocoin.eu</h4>
-      <div class="col-6 text-right">
-        <a routerLink="/faq"
-           target="_blank"
-           class="link">
-          <span>FAQ</span>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="over">
+    <div class="icon">
+      <lazy-image-component class="logo" src="/assets/images/header-logo.png" width="45px" height="86px">
+      </lazy-image-component>
+    </div>
+    <ul>
+      <li>
+        <a routerLink="/" fragment="home" (click)="drawer.toggle()" aria-label="Начална страница">
+          Начало
         </a>
-        <span>|</span>
-        <a href="/assets/inocoin%20terms%20of%20use.pdf"
-           target="_blank"
-           class="link">
-          <span>Terms</span>
-          <span>of</span>
-          <span>use</span>
+      </li>
+      <li>
+        <a routerLink="/sale" routerLinkActive="active" (click)="drawer.toggle()" aria-label="Апартаменти за продажба">
+          Продажба
         </a>
-        <span>|</span>
-        <a href="/assets/inocoin%20privacy%20policy.pdf"
-           target="_blank"
-           class="link">
-          <span>Privacy</span>
-          <span>&</span>
-          <span>Policy</span>
+      </li>
+      <li>
+        <a routerLink="/rent" routerLinkActive="active" (click)="drawer.toggle()"
+          aria-label="Апартаменти под наем">Наем</a>
+      </li>
+      <li>
+        <a routerLink="/" fragment="about-us" (click)="drawer.toggle()" aria-label="За нас">За нас</a>
+      </li>
+      <li>
+        <a routerLink="/" fragment="team" (click)="drawer.toggle()" aria-label="Екип">Екип</a>
+      </li>
+      <li>
+        <a routerLink="/" fragment="contacts" (click)="drawer.toggle()" aria-label="Контакти">Контакти</a>
+      </li>
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="desktop" [class.scroll]="active">
+        <div class="container flex">
+          <a class="flex logo" routerLink="/" aria-label="Home page">
+            <lazy-image-component objectFit="contain" class="logo" src="/assets/images/header-logo.png" width="100%"
+              height="100%">
+            </lazy-image-component>
+          </a>
+          <div class="navigation flex">
+            <a class="flex" routerLink="/projects" routerLinkActive="active" aria-label="Explore Ino Project" matRipple>
+              <lazy-image-component objectFit="contain" src="/assets/images/explore.png" width="32px" height="32px">
+              </lazy-image-component>
+              <span>Explore Ino Project</span>
+            </a>
+            <a class="flex" routerLink="/create-project" routerLinkActive="active" aria-label="Start a Project"
+              matRipple>
+              <lazy-image-component objectFit="contain" src="/assets/images/start-project.png" width="32px"
+                height="32px">
+              </lazy-image-component>
+              <span>Start a Project</span>
+            </a>
+          </div>
+          <div class="profile flex">
+            <a class="flex ripple" matRipple routerLink="/account/projects" aria-label="projects">
+              <lazy-image-component src="/assets/images/projects.png" width="31px" height="24px">
+              </lazy-image-component>
+            </a>
+            <a class="flex ripple" matRipple routerLink="/account/wallets" aria-label="wallet">
+              <lazy-image-component src="/assets/images/wallet.png" width="28px" height="28px">
+              </lazy-image-component>
+            </a>
+            <div class="menu" #menu>
+              <a class="flex ripple" matRipple aria-label="profile" (click)="login()">
+                <lazy-image-component src="/assets/images/user.png" width="28px" height="28px">
+                </lazy-image-component>
+              </a>
+              <div class="cateogries" [class.active]="show">
+                <a *ngIf="user?.role == roles.admin" (click)="toggle()" routerLink="/admin/configuration">
+                  Configuration
+                </a>
+                <a (click)="toggle()" routerLink="/account/projects">
+                  My projects
+                </a>
+                <a (click)="toggle()" routerLink="/account/wallets">
+                  Wallets
+                </a>
+                <a (click)="changePassword()">
+                  Change password
+                </a>
+                <a (click)="logOut()">
+                  Log out
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+      <mat-toolbar-row class="mobile">
+        <button mat-icon-button (click)="drawer.toggle()" aria-label="drawer">
+          <i class="flaticon-menu"></i>
+        </button>
+        <a class="title black-color">
+          <span>Квадратен метър бг</span>
         </a>
-        <a href="https://www.facebook.com/InoCoin-352618868548773/"
-           target="_blank"
-           class="link">
-          <span><img src="/assets/images/social/facebook-small.svg"/></span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="router">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+      <lazy-image-component verticalAlign="top" src="/assets/images/footer-gradient.png" width="100%" height="2px">
+      </lazy-image-component>
+      <div class="container navigation flex">
+        <div class="links">
+          <a href="/assets/inocoin%20faq.pdf" target="_blank" aria-label="FAQ">
+            FAQ
+          </a>
+          <span>|</span>
+          <a href="/assets/inocoin%20terms%20of%20use.pdf" target="_blank" aria-label="profile">
+            Terms of Use
+          </a>
+          <span>|</span>
+          <a href="/assets/inocoin%20privacy%20policy.pdf" target="_blank" aria-label="profile">
+            Policy & Privacy
+          </a>
+        </div>
+        <a class="rights center" href="//inocoin.eu" target="_blank">
+          &copy; Inocoin.eu
         </a>
-        <a href="https://twitter.com/InoCoin2018"
-           target="_blank"
-           class="link">
-          <span><img src="/assets/images/social/twitter-small.svg"/></span>
-        </a>
-        <a href="https://github.com/InoCoin"
-           target="_blank"
-           class="link">
-          <span><img src="/assets/images/social/github.svg"/></span>
-        </a>
-        <a href="https://t.me/joinchat/IVXqBA86cfnqps3zHxB7FA"
-           target="_blank"
-           class="link">
-          <span><img src="/assets/images/social/telegram.svg"/></span>
-        </a>
+        <div class="social flex">
+          <a class="flex ripple" matRipple href="https://www.facebook.com/InoCoin-352618868548773/" target="_blank"
+            aria-label="facebook">
+            <lazy-image-component src="/assets/images/facebook.png" width="28px" height="28px">
+            </lazy-image-component>
+          </a>
+          <a class="flex ripple" matRipple href="https://twitter.com/InoCoin2018" target="_blank" aria-label="twitter">
+            <lazy-image-component src="/assets/images/twitter.png" width="28px" height="28px">
+            </lazy-image-component>
+          </a>
+          <a class="flex ripple" matRipple href="https://github.com/InoCoin" target="_blank" aria-label="github">
+            <lazy-image-component src="/assets/images/github.png" width="28px" height="28px">
+            </lazy-image-component>
+          </a>
+          <a class="flex ripple" matRipple href="https://t.me/InoCoin2018" target="_blank"
+            aria-label="telegram">
+            <lazy-image-component src="/assets/images/telegram.png" width="28px" height="28px">
+            </lazy-image-component>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-<div class="no-internet"
-     *ngIf="!online">
-  <h1>No Internet connection !</h1>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

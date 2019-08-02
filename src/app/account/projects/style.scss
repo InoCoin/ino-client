@@ -1,0 +1,77 @@
+@import '../../../../stylesheets/variables';
+
+div.gradient {
+    h2 {
+        color: $blue;
+        text-align: center;
+        padding: 50px 0 0 0;
+        margin: 0;
+    }
+
+    p {
+        text-align: center;
+        margin: 5px auto;
+        font-size: 18px;
+        max-width: 650px;
+    }
+
+    div.menus {
+        justify-content: center;
+        padding: 35px 0 0px;
+    }
+
+    div.projects {
+        padding-top: 50px;
+
+        div.list {
+            flex-wrap: wrap;
+
+            h3.error {
+                font-size: 20px;
+                font-weight: 300;
+                text-align: center;
+                width: 100%;
+            }
+
+            project-component {
+                max-width: calc(100% * (1/4));
+                flex-grow: 1;
+                max-width: 300px;
+            }
+
+        }
+
+        div.pagination {
+            padding-bottom: 25px;
+            justify-content: center;
+
+            a {
+                margin: 5px;
+                padding: 5px;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+
+                &:active {
+                    color: $blue;
+                }
+
+                &:visited {
+                    color: black;
+                }
+
+                &.active {
+                    -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+                    -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+                    box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 1);
+                }
+            }
+        }
+    }
+
+
+}

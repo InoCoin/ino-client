@@ -1,0 +1,13 @@
+<div class="gradient">
+    <div class="container flex">
+        <div class="configuration">
+            <h3>Ino users</h3>
+            <user-component *ngFor="let user of users" [user]="user"></user-component>
+            <div class="actions">
+                <button mat-flat-button color="primary" (click)="onLoadUsers()" *ngIf="!loaded">
+                    Show more
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

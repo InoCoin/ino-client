@@ -1,0 +1,38 @@
+@import '../../../../stylesheets/variables';
+
+div.gradient {
+    div.container {
+        padding-top: 50px;
+        justify-content: center;
+
+        div.configuration {
+            margin-bottom: 30px ;
+            padding: 0 20px 20px 20px;
+            background-color: white;
+            z-index: 1;
+            display: inline-block;
+            border-radius: 12px;
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+            box-shadow: 0px 0px 5px 0px rgba(44, 150, 222, 0.4);
+        }
+
+        div.actions {
+            justify-content: flex-end;
+
+            button {
+                border-radius: 25px;
+                padding: 5px 0;
+                font-weight: 600;
+                font-size: 16px;
+                flex: 1;
+                margin: 15px 0 0 0;
+                font-size: 18px;
+
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+        }
+    }
+}

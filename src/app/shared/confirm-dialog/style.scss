@@ -1,0 +1,26 @@
+@import '../../../../stylesheets/variables';
+
+.header {
+  h3 {
+    color: $blue;
+    margin: 5px 0;
+  }
+}
+
+div.actions {
+  justify-content: flex-end;
+
+  button {
+    border-radius: 25px;
+    padding: 5px 0;
+    font-weight: 600;
+    font-size: 16px;
+    flex: 1;
+    margin: 15px 0 0 0;
+    font-size: 18px;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+  }
+}

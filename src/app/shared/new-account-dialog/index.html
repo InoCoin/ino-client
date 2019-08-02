@@ -1,0 +1,29 @@
+<form [formGroup]="accountForm">
+  <div class="header">
+    <h3>New Ino account</h3>
+  </div>
+  <mat-form-field color="primary">
+    <input matInput placeholder="Account name..." formControlName="name" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput autocomplete="off" placeholder="Account password..." formControlName="password" type="password">
+  </mat-form-field>
+  <mat-form-field color="primary">
+    <input matInput autocomplete="off" placeholder="Confirm password..." formControlName="passwordConfirm" type="password">
+  </mat-form-field>
+  <div class="alert">
+    Attention, save your password, you will need it to make transactions from this account. After creating your account,
+    we will generate a file called "keystore", which contains encrypted access information, you will be able to use it
+    in the ethereum network !
+  </div>
+  <div *ngFor="let key of getKeys()">
+    <div *ngFor="let err of errors[key]" class="error">
+      {{err}}
+    </div>
+  </div>
+  <div class="actions flex">
+    <button mat-flat-button color="primary" (click)="onSubmit()">
+      Submit
+    </button>
+  </div>
+</form>
